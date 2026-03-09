@@ -31,6 +31,22 @@
 #include "atom.h"
 #include "atombios_encoders.h"
 
+#ifdef CONFIG_X86_PS4
+int ps4_bridge_register(struct drm_connector *connector,
+			struct drm_encoder *encoder);
+
+static void amdgpu_maybe_add_bridge(struct drm_connector *connector,
+				    struct drm_encoder *encoder)
+{
+	struct drm_device *dev = connector->dev;
+	struct amdgpu_device *adev = dev->dev_private;
+
+	if (adev->asic_type == CHIP_LIVERPOOL || adev->asic_type == CHIP_GLADIUS) {
+		ps4_bridge_register(connector, encoder);
+	}
+}
+#endif
+
 void
 amdgpu_link_encoder_connector(struct drm_device *dev)
 {

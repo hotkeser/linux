@@ -55,6 +55,9 @@
 #include "amdgpu_userq.h"
 #include "amdgpu_userq_fence.h"
 #include "../amdxcp/amdgpu_xcp_drv.h"
+#ifdef CONFIG_X86_PS4
+#include <asm/ps4.h>
+#endif
 
 /*
  * KMS wrapper.
@@ -656,6 +659,15 @@ MODULE_PARM_DESC(cik_support, "CIK support  (1 = enabled, 0 = disabled, -1 = def
 module_param_named(cik_support, amdgpu_cik_support, int, 0444);
 #endif
 
+#ifdef CONFIG_X86_PS4
+/* On the PS4 (Liverpool graphics) we have a hard dependency on the
+ * Aeolia driver to set up the HDMI encoder which is connected to it,
+ * so defer probe until it is ready. This test passes if this isn't
+ * a PS4 (returns -ENODEV).
+ */
+if (apcie_status() == 0)
+	return -EPROBE_DEFER;
+#endif
 /**
  * DOC: smu_memory_pool_size (uint)
  * It is used to reserve gtt for smu debug usage, setting value 0 to disable it. The actual size is value * 256MiB.
