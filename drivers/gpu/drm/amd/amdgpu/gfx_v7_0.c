@@ -93,6 +93,20 @@ MODULE_FIRMWARE("amdgpu/mullins_ce.bin");
 MODULE_FIRMWARE("amdgpu/mullins_rlc.bin");
 MODULE_FIRMWARE("amdgpu/mullins_mec.bin");
 
+MODULE_FIRMWARE("amdgpu/liverpool_pfp.bin");
+MODULE_FIRMWARE("amdgpu/liverpool_me.bin");
+MODULE_FIRMWARE("amdgpu/liverpool_ce.bin");
+MODULE_FIRMWARE("amdgpu/liverpool_rlc.bin");
+MODULE_FIRMWARE("amdgpu/liverpool_mec.bin");
+MODULE_FIRMWARE("amdgpu/liverpool_mec2.bin");
+
+MODULE_FIRMWARE("amdgpu/gladius_pfp.bin");
+MODULE_FIRMWARE("amdgpu/gladius_me.bin");
+MODULE_FIRMWARE("amdgpu/gladius_ce.bin");
+MODULE_FIRMWARE("amdgpu/gladius_rlc.bin");
+MODULE_FIRMWARE("amdgpu/gladius_mec.bin");
+MODULE_FIRMWARE("amdgpu/gladius_mec2.bin");
+
 static const struct amdgpu_gds_reg_offset amdgpu_gds_reg_offset[] = {
 	{mmGDS_VMID0_BASE, mmGDS_VMID0_SIZE, mmGDS_GWS_VMID0, mmGDS_OA_VMID0},
 	{mmGDS_VMID1_BASE, mmGDS_VMID1_SIZE, mmGDS_GWS_VMID1, mmGDS_OA_VMID1},
@@ -882,6 +896,421 @@ static const u32 kalindi_rlc_save_restore_register_list[] = {
 	(0x0e00 << 16) | (0x9600 >> 2),
 };
 
+static const u32 liverpool_rlc_save_restore_register_list[] =
+{
+	(0x0600 << 16) | (0x98f4 >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x98f4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x98f8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9900 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xc260 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x90e8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c000 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c00c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c1c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9700 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x1e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x4e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x5e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x6e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x7e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x8e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x9e00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0xae00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0xbe00 << 16) | (0xcd20 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0x89bc >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0x89bc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8900 >> 2),
+	0x00000000,
+	0x3,
+	(0x0e00 << 16) | (0x9834 >> 2),
+	0x00000000,
+	(0x0000 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0001 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0002 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0003 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0080 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0081 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0082 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0083 << 16) | (0x30f00 >> 2),
+	0x00000000,
+	(0x0000 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0001 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0002 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0003 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0080 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0081 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0082 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0083 << 16) | (0x30f04 >> 2),
+	0x00000000,
+	(0x0000 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0001 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0002 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0003 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0080 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0081 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0082 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0083 << 16) | (0x30f08 >> 2),
+	0x00000000,
+	(0x0000 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0001 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0002 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0003 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0080 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0081 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0082 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0083 << 16) | (0x30f0c >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x9b7c >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x9b7c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8a14 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8a18 >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x30a00 >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x30a00 >> 2),
+	0x00000000,
+	(0x1600 << 16) | (0x30a00 >> 2),
+	0x00000000,
+	(0x1680 << 16) | (0x30a00 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8bf0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8bcc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8b24 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x30a04 >> 2),
+	0x00000000,
+	(0x1e00 << 16) | (0x30a04 >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x30a10 >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x30a10 >> 2),
+	0x00000000,
+	(0x1600 << 16) | (0x30a10 >> 2),
+	0x00000000,
+	(0x1680 << 16) | (0x30a10 >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x30a14 >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x30a14 >> 2),
+	0x00000000,
+	(0x1600 << 16) | (0x30a14 >> 2),
+	0x00000000,
+	(0x1680 << 16) | (0x30a14 >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x30a18 >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x30a18 >> 2),
+	0x00000000,
+	(0x1600 << 16) | (0x30a18 >> 2),
+	0x00000000,
+	(0x1680 << 16) | (0x30a18 >> 2),
+	0x00000000,
+	(0x0600 << 16) | (0x30a2c >> 2),
+	0x00000000,
+	(0x0680 << 16) | (0x30a2c >> 2),
+	0x00000000,
+	(0x1600 << 16) | (0x30a2c >> 2),
+	0x00000000,
+	(0x1680 << 16) | (0x30a2c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xc700 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xc704 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xc708 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xc768 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc770 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc770 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc774 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc774 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc778 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc778 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc77c >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc77c >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc780 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc780 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc784 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc784 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc788 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc788 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc78c >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc78c >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc790 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc790 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc794 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc794 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc798 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc798 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc79c >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc79c >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7a0 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7a0 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7a4 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7a4 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7a8 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7a8 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7ac >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7ac >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7b0 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7b0 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7b4 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7b4 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7b8 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7b8 >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0xc7bc >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0xc7bc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9100 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c010 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92a8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92ac >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92b0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92b4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92b8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92bc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92c0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92c4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92c8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92cc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x92d0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c00 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c04 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c20 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c38 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8c3c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xae00 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9604 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac08 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac0c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac10 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac14 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac58 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac68 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac6c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac70 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac74 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac78 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac7c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac80 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac84 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac88 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xac8c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x970c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9714 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x9718 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x971c >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x1e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x4e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x5e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x6e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x7e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x8e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x9e00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0xae00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0xbe00 << 16) | (0x31068 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xcd10 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0xcd14 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88b0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88b4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88b8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88bc >> 2),
+	0x00000000,
+	(0x0400 << 16) | (0x89c0 >> 2),
+	0x00000000,
+	(0x0480 << 16) | (0x89c0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88c4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x89d0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88d0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88d4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88d8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8980 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8988 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x89b0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x89b8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x89a0 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88c8 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x88cc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x89b4 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3e1fc >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c210 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c214 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x3c218 >> 2),
+	0x00000000,
+	(0x0e00 << 16) | (0x8904 >> 2),
+	0x00000000,
+	1,
+	(0x0e00 << 16) | (0x8c34 >> 2),
+};
+
 static u32 gfx_v7_0_get_csb_size(struct amdgpu_device *adev);
 static void gfx_v7_0_get_csb_buffer(struct amdgpu_device *adev, u32 *buffer);
 static void gfx_v7_0_init_pg(struct amdgpu_device *adev);
@@ -932,6 +1361,12 @@ static int gfx_v7_0_init_microcode(struct amdgpu_device *adev)
 	case CHIP_MULLINS:
 		chip_name = "mullins";
 		break;
+	case CHIP_LIVERPOOL:
+		chip_name = "liverpool";
+		break;
+	case CHIP_GLADIUS:
+		chip_name = "gladius";
+		break;
 	default:
 		BUG();
 	}
@@ -960,7 +1395,7 @@ static int gfx_v7_0_init_microcode(struct amdgpu_device *adev)
 	if (err)
 		goto out;
 
-	if (adev->asic_type == CHIP_KAVERI) {
+	if (adev->asic_type == CHIP_KAVERI || adev->asic_type == CHIP_LIVERPOOL || adev->asic_type == CHIP_GLADIUS) {
 		err = amdgpu_ucode_request(adev, &adev->gfx.mec2_fw,
 					   AMDGPU_UCODE_REQUIRED,
 					   "amdgpu/%s_mec2.bin", chip_name);
@@ -1184,6 +1619,150 @@ static void gfx_v7_0_tiling_mode_table_init(struct amdgpu_device *adev)
 
 		for (reg_offset = 0; reg_offset < num_tile_mode_states; reg_offset++)
 			WREG32(mmGB_TILE_MODE0 + reg_offset, tile[reg_offset]);
+		for (reg_offset = 0; reg_offset < num_secondary_tile_mode_states; reg_offset++)
+			if (reg_offset != 7)
+				WREG32(mmGB_MACROTILE_MODE0 + reg_offset, macrotile[reg_offset]);
+		break;
+		case CHIP_LIVERPOOL:
+		case CHIP_GLADIUS:
+			tile[0] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(ADDR_SURF_TILE_SPLIT_64B));
+			tile[1] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(ADDR_SURF_TILE_SPLIT_128B));
+			tile[2] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(ADDR_SURF_TILE_SPLIT_256B));
+			tile[3] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(ADDR_SURF_TILE_SPLIT_512B));
+			tile[4] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(split_equal_to_row_size));
+			tile[5] = (ARRAY_MODE(ARRAY_1D_TILED_THIN1) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING));
+			tile[6] = (ARRAY_MODE(ARRAY_PRT_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(ADDR_SURF_TILE_SPLIT_256B));
+			tile[7] = (ARRAY_MODE(ARRAY_PRT_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DEPTH_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			TILE_SPLIT(split_equal_to_row_size));
+			tile[8] = (ARRAY_MODE(ARRAY_LINEAR_ALIGNED) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16));
+			tile[9] = (ARRAY_MODE(ARRAY_1D_TILED_THIN1) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DISPLAY_MICRO_TILING));
+			tile[10] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DISPLAY_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[11] = (ARRAY_MODE(ARRAY_PRT_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DISPLAY_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_8x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[12] = (ARRAY_MODE(ARRAY_PRT_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_DISPLAY_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[13] = (ARRAY_MODE(ARRAY_1D_TILED_THIN1) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_THIN_MICRO_TILING));
+			tile[14] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_THIN_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[16] = (ARRAY_MODE(ARRAY_PRT_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_THIN_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_8x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[17] = (ARRAY_MODE(ARRAY_PRT_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_THIN_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[27] = (ARRAY_MODE(ARRAY_1D_TILED_THIN1) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_ROTATED_MICRO_TILING));
+			tile[28] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_ROTATED_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[29] = (ARRAY_MODE(ARRAY_PRT_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_ROTATED_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_8x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+			tile[30] = (ARRAY_MODE(ARRAY_PRT_2D_TILED_THIN1) |
+			MICRO_TILE_MODE_NEW(ADDR_SURF_ROTATED_MICRO_TILING) |
+			PIPE_CONFIG(ADDR_SURF_P8_32x32_16x16) |
+			SAMPLE_SPLIT(ADDR_SURF_SAMPLE_SPLIT_2));
+
+			macrotile[0] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_4) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_4) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[1] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_2) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_2) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[2] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_2) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[3] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_2) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[4] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_8_BANK));
+			macrotile[5] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_4_BANK));
+			macrotile[6] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_2_BANK));
+			macrotile[8] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_8) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_4) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[9] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_4) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_4) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[10] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_2) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_2) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[11] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_2) |
+			NUM_BANKS(ADDR_SURF_16_BANK));
+			macrotile[12] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_8_BANK));
+			macrotile[13] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_4_BANK));
+			macrotile[14] = (BANK_WIDTH(ADDR_SURF_BANK_WIDTH_1) |
+			BANK_HEIGHT(ADDR_SURF_BANK_HEIGHT_1) |
+			MACRO_TILE_ASPECT(ADDR_SURF_MACRO_ASPECT_1) |
+			NUM_BANKS(ADDR_SURF_2_BANK));
+
+			for (reg_offset = 0; reg_offset < num_tile_mode_states; reg_offset++)
+				WREG32(mmGB_TILE_MODE0 + reg_offset, tile[reg_offset]);
 		for (reg_offset = 0; reg_offset < num_secondary_tile_mode_states; reg_offset++)
 			if (reg_offset != 7)
 				WREG32(mmGB_MACROTILE_MODE0 + reg_offset, macrotile[reg_offset]);
@@ -1630,6 +2209,16 @@ gfx_v7_0_raster_config(struct amdgpu_device *adev, u32 *rconf, u32 *rconf1)
 	case CHIP_MULLINS:
 		*rconf |= 0x0;
 		*rconf1 |= 0x0;
+		break;
+	case CHIP_LIVERPOOL:
+		*rconf |= RB_MAP_PKR0(2) | RB_MAP_PKR1(2) |
+		RB_XSEL2(1) | PKR_MAP(2) | PKR_XSEL(1) |
+		PKR_YSEL(1) | SE_MAP(2) | SE_XSEL(2) |
+		SE_YSEL(2);
+		*rconf1 |= 0x0;
+	case CHIP_GLADIUS:
+		*rconf |= 0x2a00161a;
+		*rconf1 |= 0x0000002e;
 		break;
 	default:
 		DRM_ERROR("unknown asic: 0x%x\n", adev->asic_type);

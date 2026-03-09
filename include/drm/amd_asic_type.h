@@ -66,6 +66,8 @@ enum amd_asic_type {
 	CHIP_BEIGE_GOBY,	/* 34 */
 	CHIP_YELLOW_CARP,	/* 35 */
 	CHIP_IP_DISCOVERY,	/* 36 */
+	CHIP_LIVERPOOL,
+	CHIP_GLADIUS,
 	CHIP_LAST,
 };
 
