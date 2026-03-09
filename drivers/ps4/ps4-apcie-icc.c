@@ -15,39 +15,21 @@
  * other kernel code in unrelated subsystems to issue icc requests without
  * having to get a reference to the device. */
 static struct apcie_dev *icc_sc;
+
 DEFINE_MUTEX(icc_mutex);
 
 /* The ICC message passing interface seems to be potentially designed to
  * support multiple outstanding requests at once, but the original PS4 OS never
  * does this, so we don't either. */
 
-#define BUF_FULL 0x7f0
-#define BUF_EMPTY 0x7f4
-#define HDR(x) (offsetof(struct icc_message_hdr, x))
 #define REQUEST (sc->icc.spm + APCIE_SPM_ICC_REQUEST)
 #define REPLY (sc->icc.spm + APCIE_SPM_ICC_REPLY)
-
-/* Seconds. Yes, some ICC requests can be slow. */
-int icc_timeout = 15;
 
 int icc_i2c_init(struct apcie_dev *sc);
 void icc_i2c_remove(struct apcie_dev *sc);
 int icc_pwrbutton_init(struct apcie_dev *sc);
 void icc_pwrbutton_remove(struct apcie_dev *sc);
 void icc_pwrbutton_trigger(struct apcie_dev *sc, int state);
-
-#define ICC_MAJOR	'I'
-
-struct icc_cmd {
-	u8 major;
-	u16 minor;
-	void __user *data;
-	u16 length;
-	void __user *reply;
-	u16 reply_length;
-};
-
-#define ICC_IOCTL_CMD _IOWR(ICC_MAJOR, 1, struct icc_cmd)
 
 static u16 checksum(const void *p, int length)
 {
@@ -242,10 +224,10 @@ static int _apcie_icc_cmd(struct apcie_dev *sc, u8 major, u16 minor, const void 
 
 	if (intr)
 		ret = wait_event_interruptible_timeout(sc->icc.wq,
-						       !sc->icc.reply_pending, HZ * icc_timeout);
+						       !sc->icc.reply_pending, HZ * ICC_TIMEOUT);
 		else
 			ret = wait_event_timeout(sc->icc.wq,
-						 !sc->icc.reply_pending, HZ * icc_timeout);
+						 !sc->icc.reply_pending, HZ * ICC_TIMEOUT);
 
 			spin_lock_irq(&sc->icc.reply_lock);
 		sc->icc.reply_buffer = NULL;
@@ -280,9 +262,14 @@ static int _apcie_icc_cmd(struct apcie_dev *sc, u8 major, u16 minor, const void 
 	return sc->icc.reply.length - ICC_HDR_SIZE;
 }
 
+/* From arch/x86/platform/ps4/ps4.c */
+extern bool bpcie_initialized;
 int apcie_icc_cmd(u8 major, u16 minor, const void *data, u16 length,
 		  void *reply, u16 reply_length)
 {
+	if (bpcie_initialized)
+		return bpcie_icc_cmd(major, minor, data, length, reply, reply_length);
+
 	int ret;
 
 	mutex_lock(&icc_mutex);
@@ -297,7 +284,7 @@ int apcie_icc_cmd(u8 major, u16 minor, const void *data, u16 length,
 }
 EXPORT_SYMBOL_GPL(apcie_icc_cmd);
 
-void resetUsbPort(void)
+static void resetUsbPort(void)
 {
 	u8 off = 0, on = 1;
 	u8 resp[20];
@@ -322,7 +309,7 @@ void resetUsbPort(void)
 	}
 }
 
-void resetBtWlan(void)
+static void resetBtWlan(void)
 {
 	u8 off = 2, on = 3;
 	u8 resp[20];
@@ -355,7 +342,7 @@ void resetBtWlan(void)
 	}
 }
 
-void do_icc_init(void) {
+static void do_icc_init(void) {
 	u8 svc = 0x10;
 	u8 reply[0x30];
 	static const u8 led_config[] = {
