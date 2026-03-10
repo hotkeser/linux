@@ -64,6 +64,9 @@ amdgpu_link_encoder_connector(struct drm_device *dev)
 		list_for_each_entry(encoder, &dev->mode_config.encoder_list, head) {
 			amdgpu_encoder = to_amdgpu_encoder(encoder);
 			if (amdgpu_encoder->devices & amdgpu_connector->devices) {
+#ifdef CONFIG_X86_PS4
+				amdgpu_maybe_add_bridge(connector, encoder);
+#endif
 				drm_connector_attach_encoder(connector, encoder);
 				if (amdgpu_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT)) {
 					amdgpu_atombios_encoder_init_backlight(amdgpu_encoder, connector);
